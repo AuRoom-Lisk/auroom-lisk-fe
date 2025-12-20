@@ -1,0 +1,19 @@
+// Re-export ABIs from the abi directory
+export { ABIs, CONTRACTS as ABI_CONTRACTS } from '@/abi';
+
+// For convenience, export commonly used ABIs
+import MockIDRXABI from '@/abi/MockIDRX.json';
+import XAUTABI from '@/abi/XAUT.json';
+import IdentityRegistryABI from '@/abi/IdentityRegistry.json';
+import SwapRouterABI from '@/abi/SwapRouter.json';
+import GoldVaultABI from '@/abi/GoldVault.json';
+import UniswapV2Router02ABI from '@/abi/UniswapV2Router02.json';
+
+export {
+    MockIDRXABI as ERC20ABI,
+    IdentityRegistryABI,
+    SwapRouterABI,
+    GoldVaultABI,
+    UniswapV2Router02ABI as UniswapV2RouterABI,
+    XAUTABI
+};
