@@ -1,7 +1,6 @@
 import { Hero } from '@/components/landing/Hero';
 import { WhatIsAuRoom } from '@/components/landing/WhatIsAuRoom';
 import { UnderstandingAssets } from '@/components/landing/UnderstandingAssets';
-import { AuRoomVsDex } from '@/components/landing/AuRoomVsDex';
 import { WhyRWA } from '@/components/landing/WhyRWA';
 import { HowYieldWorks } from '@/components/landing/HowYieldWorks';
 import { HowItWorks } from '@/components/landing/HowItWorks';
@@ -23,31 +22,28 @@ export default function HomePage() {
       {/* 3. Understanding the Assets */}
       <UnderstandingAssets />
 
-      {/* 4. AuRoom vs Regular DEX ⭐ KEY DIFFERENTIATOR */}
-      <AuRoomVsDex />
-
-      {/* 5. Why RWA Matters */}
+      {/* 4. Why RWA Matters */}
       <WhyRWA />
 
-      {/* 6. How Yield is Generated */}
+      {/* 5. How Yield is Generated */}
       <HowYieldWorks />
 
-      {/* 7. How It Works */}
+      {/* 6. How It Works */}
       <HowItWorks />
 
-      {/* 8. Live Protocol Stats */}
+      {/* 7. Live Protocol Stats */}
       <LiveStats />
 
-      {/* 9. Built With */}
+      {/* 8. Built With */}
       <BuiltWith />
 
-      {/* 10. Security & Compliance */}
+      {/* 9. Security & Compliance */}
       <SecurityCompliance />
 
-      {/* 11. Final CTA */}
+      {/* 10. Final CTA */}
       <FinalCTA />
 
-      {/* 12. Footer */}
+      {/* 11. Footer */}
       <LandingFooter />
     </div>
   );

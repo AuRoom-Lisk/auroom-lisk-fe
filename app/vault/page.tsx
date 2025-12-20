@@ -103,7 +103,7 @@ export default function VaultPage() {
         <div className="container mx-auto px-4 py-12">
             <div className="max-w-2xl mx-auto space-y-6">
                 {/* Vault Stats */}
-                {totalAssets !== undefined && (
+                {totalAssets !== undefined ? (
                     <Card>
                         <CardHeader>
                             <CardTitle>Gold Vault Stats</CardTitle>
@@ -134,10 +134,10 @@ export default function VaultPage() {
                             </div>
                         </CardContent>
                     </Card>
-                )}
+                ) : null}
 
                 {/* User Position */}
-                {isConnected && gxautBalance && (gxautBalance as bigint) > BigInt(0) && (
+                {isConnected && gxautBalance && (gxautBalance as bigint) > BigInt(0) ? (
                     <Card>
                         <CardHeader>
                             <CardTitle>Your Position</CardTitle>
@@ -159,7 +159,7 @@ export default function VaultPage() {
                             </div>
                         </CardContent>
                     </Card>
-                )}
+                ) : null}
 
                 {/* Deposit/Withdraw */}
                 <Card>
