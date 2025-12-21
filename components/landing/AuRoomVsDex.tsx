@@ -1,8 +1,17 @@
+'use client';
+
 import Link from 'next/link';
 import { SectionWrapper } from './shared/SectionWrapper';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, X, Check } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
+import {
+    ChartContainer,
+    ChartTooltip,
+    ChartTooltipContent,
+    type ChartConfig,
+} from '@/components/ui/chart';
+import { CartesianGrid, Line, LineChart, XAxis, YAxis } from 'recharts';
 
 export function AuRoomVsDex() {
     const comparisonData = [
@@ -32,6 +41,33 @@ export function AuRoomVsDex() {
             auroom: 'Complete investment system',
         },
     ];
+
+    const chartData = [
+        { month: 0, regularDex: 100, auroom: 100 },
+        { month: 1, regularDex: 100.67, auroom: 101.5 },
+        { month: 2, regularDex: 101.34, auroom: 103.0 },
+        { month: 3, regularDex: 102.01, auroom: 104.5 },
+        { month: 4, regularDex: 102.68, auroom: 106.0 },
+        { month: 5, regularDex: 103.35, auroom: 107.5 },
+        { month: 6, regularDex: 104.02, auroom: 109.0 },
+        { month: 7, regularDex: 104.69, auroom: 110.5 },
+        { month: 8, regularDex: 105.36, auroom: 112.0 },
+        { month: 9, regularDex: 106.03, auroom: 113.5 },
+        { month: 10, regularDex: 106.70, auroom: 115.0 },
+        { month: 11, regularDex: 107.37, auroom: 116.5 },
+        { month: 12, regularDex: 108.0, auroom: 118.0 },
+    ];
+
+    const chartConfig = {
+        regularDex: {
+            label: "Regular DEX",
+            color: "hsl(0, 84%, 60%)",
+        },
+        auroom: {
+            label: "AuRoom",
+            color: "hsl(142, 71%, 45%)",
+        },
+    } satisfies ChartConfig;
 
     return (
         <SectionWrapper background="muted" id="auroom-vs-dex">
@@ -184,6 +220,133 @@ export function AuRoomVsDex() {
                             </tbody>
                         </table>
                     </div>
+                </div>
+
+                {/* ROI Visualization - Shadcn Line Chart */}
+                <div>
+                    <h3 className="text-2xl font-bold text-center mb-6">ROI Comparison: 1 Year Growth</h3>
+                    <p className="text-center text-muted-foreground mb-8">
+                        Starting with Rp 100,000,000 investment in gold
+                    </p>
+
+                    {/* Chart Container */}
+                    <Card className="p-6">
+                        <CardContent className="p-0">
+                            <ChartContainer config={chartConfig} className="h-[400px] w-full">
+                                <LineChart
+                                    accessibilityLayer
+                                    data={chartData}
+                                    margin={{
+                                        left: 12,
+                                        right: 12,
+                                        top: 12,
+                                        bottom: 12,
+                                    }}
+                                >
+                                    <CartesianGrid vertical={false} />
+                                    <XAxis
+                                        dataKey="month"
+                                        tickLine={false}
+                                        axisLine={false}
+                                        tickMargin={8}
+                                    />
+                                    <YAxis
+                                        tickLine={false}
+                                        axisLine={false}
+                                        tickMargin={8}
+                                        tickFormatter={(value) => `${value}M`}
+                                    />
+                                    <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
+                                    <Line
+                                        dataKey="regularDex"
+                                        type="monotone"
+                                        stroke="var(--color-regularDex)"
+                                        strokeWidth={2}
+                                        dot={{
+                                            fill: "var(--color-regularDex)",
+                                        }}
+                                        activeDot={{
+                                            r: 6,
+                                        }}
+                                    />
+                                    <Line
+                                        dataKey="auroom"
+                                        type="monotone"
+                                        stroke="var(--color-auroom)"
+                                        strokeWidth={2}
+                                        dot={{
+                                            fill: "var(--color-auroom)",
+                                        }}
+                                        activeDot={{
+                                            r: 6,
+                                        }}
+                                    />
+                                </LineChart>
+                            </ChartContainer>
+
+                            {/* Chart Details */}
+                            <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+                                {/* Regular DEX Summary */}
+                                <Card className="border-red-200 dark:border-red-900/50">
+                                    <CardContent className="p-4">
+                                        <div className="text-center space-y-2">
+                                            <div className="text-sm text-muted-foreground">Regular DEX</div>
+                                            <div className="text-2xl font-bold font-mono">Rp 108M</div>
+                                            <div className="text-sm">
+                                                <span className="text-yellow-600 font-medium">Gold: +8%</span>
+                                                <br />
+                                                <span className="text-red-600 font-medium">Yield: 0%</span>
+                                            </div>
+                                            <div className="text-lg font-bold text-red-600">ROI: +8%</div>
+                                        </div>
+                                    </CardContent>
+                                </Card>
+
+                                {/* Difference */}
+                                <Card className="border-green-200 dark:border-green-900/50 bg-green-50/50 dark:bg-green-950/10">
+                                    <CardContent className="p-4">
+                                        <div className="text-center space-y-2">
+                                            <div className="text-sm text-muted-foreground">Difference</div>
+                                            <div className="text-2xl font-bold font-mono text-green-600">+Rp 10M</div>
+                                            <div className="text-sm text-muted-foreground">
+                                                Extra earnings from<br />vault yield
+                                            </div>
+                                            <div className="text-lg font-bold text-green-600">125% More</div>
+                                        </div>
+                                    </CardContent>
+                                </Card>
+
+                                {/* AuRoom Summary */}
+                                <Card className="border-green-200 dark:border-green-900/50 ring-2 ring-green-500/20">
+                                    <CardContent className="p-4">
+                                        <div className="text-center space-y-2">
+                                            <div className="text-sm text-muted-foreground">AuRoom</div>
+                                            <div className="text-2xl font-bold font-mono text-green-600">Rp 118M</div>
+                                            <div className="text-sm">
+                                                <span className="text-yellow-600 font-medium">Gold: +8%</span>
+                                                <br />
+                                                <span className="text-green-600 font-medium">Yield: +10%</span>
+                                            </div>
+                                            <div className="text-lg font-bold text-green-600">ROI: +18%</div>
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            </div>
+
+                            {/* Key Insight */}
+                            <div className="mt-6 text-center">
+                                <Card className="inline-block bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-950/20 dark:to-emerald-950/20 border-green-200 dark:border-green-800">
+                                    <CardContent className="p-4">
+                                        <p className="text-sm">
+                                            <span className="font-bold text-green-700 dark:text-green-400">The gap widens every month!</span>
+                                            <br />
+                                            <span className="text-muted-foreground">AuRoom's dual revenue (gold + yield) compounds faster than Regular DEX</span>
+                                        </p>
+                                    </CardContent>
+                                </Card>
+                            </div>
+                        </CardContent>
+                    </Card>
                 </div>
 
                 {/* Analogy Box */}
