@@ -1,7 +1,6 @@
 import { SectionWrapper } from './shared/SectionWrapper';
 import { FeatureCard } from './shared/FeatureCard';
 import { Shield, IdCard, FileText, Clock, Check } from 'lucide-react';
-import { Alert, AlertDescription } from '@/components/ui/alert';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 
@@ -38,12 +37,14 @@ export function SecurityCompliance() {
     ];
 
     return (
-        <SectionWrapper background="muted" id="security">
+        <SectionWrapper background="default" id="security">
             <div className="max-w-6xl mx-auto space-y-12">
                 {/* Header */}
                 <div className="text-center space-y-4">
-                    <h2 className="text-3xl md:text-4xl font-bold">Security & Compliance</h2>
-                    <p className="text-lg text-muted-foreground">
+                    <h2 className="text-3xl md:text-4xl font-bold text-white">
+                        Security & <span className="bg-gradient-to-r from-yellow-400 via-yellow-500 to-amber-500 bg-clip-text text-transparent">Compliance</span>
+                    </h2>
+                    <p className="text-lg text-white/70">
                         Your assets are protected by design
                     </p>
                 </div>
@@ -56,49 +57,52 @@ export function SecurityCompliance() {
                             icon={pillar.icon}
                             title={pillar.title}
                             description={pillar.description}
-                            iconColor="text-blue-600"
-                            iconBgColor="bg-blue-100 dark:bg-blue-900"
+                            iconColor="text-blue-400"
+                            iconBgColor="bg-blue-500/10"
                         />
                     ))}
                 </div>
 
                 {/* Smart Contract Features */}
-                <div className="bg-card border rounded-lg p-8">
-                    <h3 className="text-xl font-bold mb-6">Smart Contract Security Features</h3>
+                <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8">
+                    <h3 className="text-xl font-bold mb-6 text-white">Smart Contract Security Features</h3>
                     <div className="space-y-3">
                         {contractFeatures.map((feature, index) => (
                             <div key={index} className="flex items-start gap-3">
-                                <Check className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
-                                <span className="text-sm">{feature}</span>
+                                <Check className="h-5 w-5 text-green-400 flex-shrink-0 mt-0.5" />
+                                <span className="text-sm text-white/80">{feature}</span>
                             </div>
                         ))}
                     </div>
                 </div>
 
                 {/* Audit Status */}
-                <Alert>
-                    <AlertDescription>
-                        <div className="space-y-3">
-                            <div className="font-bold">📋 Audit Status</div>
-                            <div className="text-sm space-y-2">
-                                <p>⏳ Professional audit planned for mainnet launch</p>
-                                <p>Currently: Internal testing complete (106/106 tests passing)</p>
-                                <p>Testnet: Mantle Sepolia deployment</p>
-                            </div>
-                            <div className="pt-2">
-                                <Button asChild variant="outline" size="sm">
-                                    <Link
-                                        href="https://sepolia.mantlescan.xyz/address/0xd92cE2F13509840B1203D35218227559E64fbED0"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                    >
-                                        View Contracts on Explorer
-                                    </Link>
-                                </Button>
-                            </div>
+                <div className="bg-yellow-500/10 backdrop-blur-xl border border-yellow-500/30 rounded-2xl p-6">
+                    <div className="space-y-3">
+                        <div className="font-bold text-white">📋 Audit Status</div>
+                        <div className="text-sm space-y-2 text-white/80">
+                            <p>⏳ Professional audit planned for mainnet launch</p>
+                            <p>Currently: Internal testing complete (106/106 tests passing)</p>
+                            <p>Testnet: Mantle Sepolia deployment</p>
                         </div>
-                    </AlertDescription>
-                </Alert>
+                        <div className="pt-2">
+                            <Button
+                                asChild
+                                variant="outline"
+                                size="sm"
+                                className="border-yellow-500/30 bg-yellow-500/10 text-yellow-400 hover:bg-yellow-500/20 hover:text-yellow-300"
+                            >
+                                <Link
+                                    href="https://sepolia.mantlescan.xyz/address/0xd92cE2F13509840B1203D35218227559E64fbED0"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    View Contracts on Explorer
+                                </Link>
+                            </Button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </SectionWrapper>
     );

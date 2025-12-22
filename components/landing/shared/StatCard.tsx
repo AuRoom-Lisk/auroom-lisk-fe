@@ -54,26 +54,26 @@ export function StatCard({
 
     if (isLoading) {
         return (
-            <div className={cn('text-center space-y-2', className)}>
-                <div className="h-8 w-32 bg-muted animate-pulse rounded mx-auto" />
-                <div className="h-4 w-24 bg-muted animate-pulse rounded mx-auto" />
+            <div className={cn('p-6 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 text-center space-y-2', className)}>
+                <div className="h-8 w-32 bg-white/10 animate-pulse rounded mx-auto" />
+                <div className="h-4 w-24 bg-white/10 animate-pulse rounded mx-auto" />
             </div>
         );
     }
 
     return (
-        <div className={cn('text-center space-y-2', className)}>
+        <div className={cn('p-6 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 hover:bg-white/10 hover:border-yellow-500/30 transition-all duration-300 text-center space-y-2', className)}>
             <div className="flex items-center justify-center gap-2">
-                {Icon && <Icon className="h-5 w-5 text-yellow-600" />}
-                <div className="text-3xl md:text-4xl font-bold font-mono text-yellow-600">
+                {Icon && <Icon className="h-5 w-5 text-yellow-500" />}
+                <div className="text-3xl md:text-4xl font-bold font-mono bg-gradient-to-r from-yellow-400 to-amber-500 bg-clip-text text-transparent">
                     {displayValue}
                 </div>
             </div>
-            <div className="text-sm text-muted-foreground">{label}</div>
+            <div className="text-sm text-white/70">{label}</div>
             {trend && (
                 <div className={cn(
                     'text-xs font-medium',
-                    trend.isPositive ? 'text-green-600' : 'text-red-600'
+                    trend.isPositive ? 'text-green-400' : 'text-red-400'
                 )}>
                     {trend.isPositive ? '↑' : '↓'} {trend.value} ({trend.period})
                 </div>

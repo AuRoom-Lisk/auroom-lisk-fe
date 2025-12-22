@@ -55,13 +55,15 @@ export function WhyRWA() {
     ];
 
     return (
-        <SectionWrapper id="why-rwa">
+        <SectionWrapper id="why-rwa" background="default">
             <div className="max-w-6xl mx-auto space-y-16">
                 {/* Header */}
                 <div className="text-center space-y-4">
-                    <h2 className="text-3xl md:text-4xl font-bold">Why Real World Assets?</h2>
+                    <h2 className="text-3xl md:text-4xl font-bold text-white">
+                        Why <span className="bg-gradient-to-r from-yellow-400 via-yellow-500 to-amber-500 bg-clip-text text-transparent">Real World Assets</span>?
+                    </h2>
                     <div className="max-w-3xl mx-auto">
-                        <blockquote className="text-lg italic text-muted-foreground border-l-4 border-yellow-600 pl-6 py-4">
+                        <blockquote className="text-lg italic text-white/70 border-l-4 border-yellow-500 pl-6 py-4">
                             "RWA bridges the gap between traditional finance and blockchain,
                             bringing tangible, real-world value on-chain. Instead of speculative tokens,
                             you own a representation of actual assets."
@@ -71,26 +73,26 @@ export function WhyRWA() {
 
                 {/* Comparison Table */}
                 <div>
-                    <h3 className="text-2xl font-bold text-center mb-8">Traditional vs AuRoom</h3>
+                    <h3 className="text-2xl font-bold text-center mb-8 text-white">Traditional vs AuRoom</h3>
                     <ComparisonTable rows={comparisonData} />
                 </div>
 
                 {/* Why Gold */}
                 <div>
-                    <h3 className="text-2xl font-bold text-center mb-8">Why Gold?</h3>
+                    <h3 className="text-2xl font-bold text-center mb-8 text-white">Why Gold?</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                         {goldReasons.map((reason, index) => (
                             <div
                                 key={index}
-                                className="bg-card border rounded-lg p-6 text-center space-y-4 transition-all hover:shadow-lg hover:scale-105"
+                                className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 text-center space-y-4 transition-all hover:bg-white/10 hover:border-yellow-500/30 hover:scale-105"
                             >
                                 <div className="flex justify-center">
-                                    <div className="h-12 w-12 rounded-lg bg-yellow-100 dark:bg-yellow-900 flex items-center justify-center">
-                                        <reason.icon className="h-6 w-6 text-yellow-600" />
+                                    <div className="h-12 w-12 rounded-xl bg-yellow-500/10 flex items-center justify-center">
+                                        <reason.icon className="h-6 w-6 text-yellow-500" />
                                     </div>
                                 </div>
-                                <h4 className="font-bold">{reason.title}</h4>
-                                <p className="text-sm text-muted-foreground">{reason.description}</p>
+                                <h4 className="font-bold text-white">{reason.title}</h4>
+                                <p className="text-sm text-white/70">{reason.description}</p>
                             </div>
                         ))}
                     </div>

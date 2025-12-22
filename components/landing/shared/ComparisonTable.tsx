@@ -1,4 +1,3 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Check, X } from 'lucide-react';
 
 interface ComparisonRow {
@@ -17,40 +16,38 @@ export function ComparisonTable({ rows }: ComparisonTableProps) {
     return (
         <div className="grid md:grid-cols-2 gap-6">
             {/* Traditional Gold */}
-            <Card className="border-red-200 dark:border-red-900">
-                <CardHeader>
-                    <CardTitle className="text-center">Traditional Gold Investment</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
+            <div className="p-6 rounded-2xl bg-white/5 backdrop-blur-xl border border-red-500/20">
+                <h3 className="text-xl font-bold text-center mb-6 text-white">Traditional Gold Investment</h3>
+                <div className="space-y-4">
                     {rows.map((row, index) => (
                         <div key={index} className="space-y-1">
-                            <div className="text-sm font-medium text-muted-foreground">{row.aspect}</div>
+                            <div className="text-sm font-medium text-white/60">{row.aspect}</div>
                             <div className="flex items-start gap-2">
-                                <X className="h-5 w-5 text-red-500 flex-shrink-0 mt-0.5" />
-                                <span className="text-sm">{row.traditional}</span>
+                                <X className="h-5 w-5 text-red-400 flex-shrink-0 mt-0.5" />
+                                <span className="text-sm text-white/80">{row.traditional}</span>
                             </div>
                         </div>
                     ))}
-                </CardContent>
-            </Card>
+                </div>
+            </div>
 
             {/* AuRoom RWA */}
-            <Card className="border-green-200 dark:border-green-900">
-                <CardHeader>
-                    <CardTitle className="text-center">With AuRoom (RWA)</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
+            <div className="p-6 rounded-2xl bg-white/5 backdrop-blur-xl border border-yellow-500/30">
+                <h3 className="text-xl font-bold text-center mb-6 bg-gradient-to-r from-yellow-400 to-amber-500 bg-clip-text text-transparent">
+                    With AuRoom (RWA)
+                </h3>
+                <div className="space-y-4">
                     {rows.map((row, index) => (
                         <div key={index} className="space-y-1">
-                            <div className="text-sm font-medium text-muted-foreground">{row.aspect}</div>
+                            <div className="text-sm font-medium text-white/60">{row.aspect}</div>
                             <div className="flex items-start gap-2">
-                                <Check className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
-                                <span className="text-sm">{row.auroom}</span>
+                                <Check className="h-5 w-5 text-yellow-500 flex-shrink-0 mt-0.5" />
+                                <span className="text-sm text-white/80">{row.auroom}</span>
                             </div>
                         </div>
                     ))}
-                </CardContent>
-            </Card>
+                </div>
+            </div>
         </div>
     );
 }
