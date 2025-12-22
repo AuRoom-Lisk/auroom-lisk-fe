@@ -4,12 +4,14 @@ import { ArrowRight } from 'lucide-react';
 
 export function UnderstandingAssets() {
     return (
-        <SectionWrapper background="muted" id="understanding-assets">
+        <SectionWrapper background="darker" id="understanding-assets">
             <div className="max-w-6xl mx-auto space-y-12">
                 {/* Header */}
                 <div className="text-center space-y-4">
-                    <h2 className="text-3xl md:text-4xl font-bold">Understanding the Assets</h2>
-                    <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                    <h2 className="text-3xl md:text-4xl font-bold text-white">
+                        Understanding the <span className="bg-gradient-to-r from-yellow-400 via-yellow-500 to-amber-500 bg-clip-text text-transparent">Assets</span>
+                    </h2>
+                    <p className="text-lg text-white/70 max-w-2xl mx-auto">
                         Learn about the two key tokens that power AuRoom Protocol
                     </p>
                 </div>
@@ -39,7 +41,7 @@ export function UnderstandingAssets() {
                             'Backed 1:1 by physical gold',
                             'Stored in Swiss vaults (Tether custody)',
                             'Redeemable for physical gold',
-                            'Current price: ~$4000 per XAUT',
+                            'Current price: ~$2700 per XAUT',
                             'Trade 24/7, no storage fees'
                         ]}
                         learnMoreUrl="https://gold.tether.to"
@@ -48,25 +50,25 @@ export function UnderstandingAssets() {
 
                 {/* Flow Diagram */}
                 <div className="max-w-3xl mx-auto">
-                    <div className="bg-card border rounded-lg p-8">
-                        <h3 className="text-xl font-bold text-center mb-6">Your Journey</h3>
+                    <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8">
+                        <h3 className="text-xl font-bold text-center mb-6 text-white">Your Journey</h3>
                         <div className="flex items-center justify-center gap-4 flex-wrap">
                             <div className="text-center">
-                                <div className="text-3xl font-bold text-yellow-600">IDRX</div>
-                                <div className="text-sm text-muted-foreground">Rupiah</div>
+                                <div className="text-3xl font-bold bg-gradient-to-r from-yellow-400 to-yellow-500 bg-clip-text text-transparent">IDRX</div>
+                                <div className="text-sm text-white/60">Rupiah</div>
                             </div>
-                            <ArrowRight className="h-6 w-6 text-muted-foreground" />
+                            <ArrowRight className="h-6 w-6 text-yellow-500" />
                             <div className="text-center">
-                                <div className="text-3xl font-bold text-blue-600">USDC</div>
-                                <div className="text-sm text-muted-foreground">Bridge</div>
+                                <div className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-blue-500 bg-clip-text text-transparent">USDC</div>
+                                <div className="text-sm text-white/60">Bridge</div>
                             </div>
-                            <ArrowRight className="h-6 w-6 text-muted-foreground" />
+                            <ArrowRight className="h-6 w-6 text-yellow-500" />
                             <div className="text-center">
-                                <div className="text-3xl font-bold text-yellow-600">XAUT</div>
-                                <div className="text-sm text-muted-foreground">Gold</div>
+                                <div className="text-3xl font-bold bg-gradient-to-r from-amber-400 to-amber-500 bg-clip-text text-transparent">XAUT</div>
+                                <div className="text-sm text-white/60">Gold</div>
                             </div>
                         </div>
-                        <p className="text-center text-sm text-muted-foreground mt-6">
+                        <p className="text-center text-sm text-white/60 mt-6">
                             "Your Rupiah becomes gold in one seamless transaction"
                         </p>
                     </div>

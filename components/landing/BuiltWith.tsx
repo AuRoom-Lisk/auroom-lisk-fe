@@ -35,12 +35,14 @@ export function BuiltWith() {
     ];
 
     return (
-        <SectionWrapper id="built-with">
+        <SectionWrapper id="built-with" background="darker">
             <div className="max-w-6xl mx-auto space-y-12">
                 {/* Header */}
                 <div className="text-center space-y-4">
-                    <h2 className="text-3xl md:text-4xl font-bold">Built With</h2>
-                    <p className="text-lg text-muted-foreground">
+                    <h2 className="text-3xl md:text-4xl font-bold text-white">
+                        Built With <span className="bg-gradient-to-r from-yellow-400 via-yellow-500 to-amber-500 bg-clip-text text-transparent">Best-in-Class</span> Technology
+                    </h2>
+                    <p className="text-lg text-white/70">
                         Powered by industry-leading technology
                     </p>
                 </div>
@@ -60,7 +62,7 @@ export function BuiltWith() {
 
                 {/* Secondary Technologies */}
                 <div>
-                    <h3 className="text-xl font-bold text-center mb-6">Other Technologies</h3>
+                    <h3 className="text-xl font-bold text-center mb-6 text-white">Other Technologies</h3>
                     <div className="flex flex-wrap gap-3 justify-center">
                         {secondaryTech.map((tech, index) => (
                             <TechBadge
