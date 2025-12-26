@@ -1,0 +1,105 @@
+'use client';
+
+import { formatRupiah, formatXAUT, getLoanStatus } from '@/lib/utils/format';
+import { Button } from '@/components/ui/button';
+import { Loader2 } from 'lucide-react';
+
+interface ActiveLoanCardProps {
+    collateral: bigint;
+    debt: bigint;
+    collateralValue: bigint;
+    ltv: bigint;
+    onRepayClick: () => void;
+    isLoading?: boolean;
+}
+
+export function ActiveLoanCard({
+    collateral,
+    debt,
+    collateralValue,
+    ltv,
+    onRepayClick,
+    isLoading,
+}: ActiveLoanCardProps) {
+    if (isLoading) {
+        return (
+            <div className="p-6 rounded-2xl bg-zinc-900 border-2 border-yellow-500/30 flex items-center justify-center">
+                <Loader2 className="w-6 h-6 text-yellow-500 animate-spin" />
+            </div>
+        );
+    }
+
+    const ltvBps = Number(ltv);
+    const status = getLoanStatus(ltvBps);
+    const ltvPercentage = ltvBps / 100;
+    const capacityUsed = (ltvPercentage / 75) * 100; // 75% is max LTV
+
+    return (
+        <div className="p-6 rounded-2xl bg-zinc-900 border-2 border-yellow-500/30">
+            <h3 className="text-lg font-semibold text-white mb-4">📊 PINJAMAN AKTIF</h3>
+
+            <div className="space-y-4">
+                {/* Stats Grid */}
+                <div className="grid grid-cols-3 gap-4">
+                    {/* Emas Dijaminkan */}
+                    <div className="p-4 rounded-xl bg-black/40 border border-yellow-500/20">
+                        <p className="text-white/60 text-xs mb-1">Emas Dijaminkan</p>
+                        <p className="text-yellow-500 font-bold text-lg">{formatXAUT(collateral)} XAUT</p>
+                        <p className="text-white/50 text-xs mt-1">~{formatRupiah(collateralValue)}</p>
+                    </div>
+
+                    {/* Hutang */}
+                    <div className="p-4 rounded-xl bg-black/40 border border-yellow-500/20">
+                        <p className="text-white/60 text-xs mb-1">Hutang</p>
+                        <p className="text-white font-bold text-lg">{formatRupiah(debt)}</p>
+                    </div>
+
+                    {/* Status */}
+                    <div className="p-4 rounded-xl bg-black/40 border border-yellow-500/20">
+                        <p className="text-white/60 text-xs mb-1">Status</p>
+                        <p className={`${status.color} font-bold text-lg`}>
+                            {status.text === 'AMAN' && '✅ '}
+                            {status.text === 'PERHATIAN' && '⚠️ '}
+                            {status.text === 'BAHAYA' && '🚨 '}
+                            {status.text}
+                        </p>
+                    </div>
+                </div>
+
+                {/* Capacity Bar */}
+                <div>
+                    <div className="flex items-center justify-between mb-2">
+                        <span className="text-white/70 text-sm">Kapasitas Pinjaman</span>
+                        <span className="text-white/90 text-sm font-semibold">
+                            {ltvPercentage.toFixed(0)}% terpakai
+                        </span>
+                    </div>
+                    <div className="h-3 bg-black/40 rounded-full overflow-hidden">
+                        <div
+                            className={`h-full transition-all ${ltvPercentage <= 50
+                                    ? 'bg-green-500'
+                                    : ltvPercentage <= 75
+                                        ? 'bg-yellow-500'
+                                        : 'bg-red-500'
+                                }`}
+                            style={{ width: `${Math.min(capacityUsed, 100)}%` }}
+                        />
+                    </div>
+                </div>
+
+                {/* Repay Button */}
+                <Button
+                    onClick={onRepayClick}
+                    className="w-full h-12 bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 text-black font-bold"
+                >
+                    💳 LUNASI PINJAMAN
+                </Button>
+
+                {/* Info */}
+                <p className="text-white/50 text-xs text-center">
+                    ⓘ Lunasi hutang untuk menarik kembali emas kamu
+                </p>
+            </div>
+        </div>
+    );
+}

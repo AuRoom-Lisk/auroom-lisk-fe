@@ -87,3 +87,79 @@ export function getExplorerTxUrl(txHash: string): string {
     const explorerUrl = process.env.NEXT_PUBLIC_EXPLORER_URL || 'https://sepolia.mantlescan.xyz';
     return `${explorerUrl}/tx/${txHash}`;
 }
+
+/**
+ * Format bigint as Indonesian Rupiah
+ * For Pinjam Tunai interface
+ */
+export function formatRupiah(value: bigint, decimals: number = 6): string {
+    const num = Number(value) / Math.pow(10, decimals);
+    return new Intl.NumberFormat('id-ID', {
+        style: 'currency',
+        currency: 'IDR',
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+    }).format(num);
+}
+
+/**
+ * Format bigint as short Rupiah (Rp 1jt, Rp 10jt, etc)
+ * For quick amount buttons
+ */
+export function formatRupiahShort(value: bigint, decimals: number = 6): string {
+    const num = Number(value) / Math.pow(10, decimals);
+
+    if (num >= 1_000_000_000) {
+        return `Rp ${(num / 1_000_000_000).toFixed(1)}M`;
+    } else if (num >= 1_000_000) {
+        return `Rp ${(num / 1_000_000).toFixed(0)}jt`;
+    } else if (num >= 1_000) {
+        return `Rp ${(num / 1_000).toFixed(0)}rb`;
+    }
+    return `Rp ${num.toFixed(0)}`;
+}
+
+/**
+ * Format XAUT amount
+ */
+export function formatXAUT(value: bigint): string {
+    const num = Number(value) / 1e6;
+    if (num === 0) return '0';
+    if (num < 0.01) return num.toFixed(4);
+    if (num < 1) return num.toFixed(3);
+    return num.toFixed(2);
+}
+
+/**
+ * Parse Rupiah input string to bigint
+ * Removes all non-digit characters and converts to 6 decimals
+ */
+export function parseRupiahInput(value: string): bigint {
+    const cleaned = value.replace(/[^\d]/g, '');
+    if (!cleaned) return 0n;
+    return BigInt(cleaned) * BigInt(1e6); // Convert to 6 decimals
+}
+
+/**
+ * Format input with thousand separators
+ * For real-time input formatting
+ */
+export function formatInputValue(value: string): string {
+    const cleaned = value.replace(/[^\d]/g, '');
+    if (!cleaned) return '';
+    return Number(cleaned).toLocaleString('id-ID');
+}
+
+/**
+ * Get loan status text based on LTV
+ * For Pinjaman Aktif card
+ */
+export function getLoanStatus(ltvBps: number): { text: string; color: string } {
+    if (ltvBps <= 5000) {
+        return { text: 'AMAN', color: 'text-green-500' };
+    } else if (ltvBps <= 7500) {
+        return { text: 'PERHATIAN', color: 'text-yellow-500' };
+    } else {
+        return { text: 'BAHAYA', color: 'text-red-500' };
+    }
+}

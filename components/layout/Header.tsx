@@ -48,6 +48,16 @@ export function Header() {
                             </span>
                         </Link>
                         <Link
+                            href="/pinjam-tunai"
+                            className="text-sm font-medium text-yellow-400 hover:text-yellow-300 transition-colors flex items-center gap-1"
+                        >
+                            <span>💰</span>
+                            Pinjam Tunai
+                            <span className="px-1.5 py-0.5 bg-gradient-to-r from-green-400 to-green-600 text-black text-[10px] font-bold rounded">
+                                SIMPLE
+                            </span>
+                        </Link>
+                        <Link
                             href="/vault"
                             className="text-sm font-medium text-white/80 hover:text-yellow-400 transition-colors"
                         >
