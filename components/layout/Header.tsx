@@ -31,6 +31,23 @@ export function Header() {
                             Borrow
                         </Link>
                         <Link
+                            href="/instant-borrow"
+                            className="text-sm font-medium text-yellow-400 hover:text-yellow-300 transition-colors flex items-center gap-1"
+                        >
+                            <span>⚡</span>
+                            Instant Borrow
+                        </Link>
+                        <Link
+                            href="/instant-borrow-v2"
+                            className="text-sm font-medium text-yellow-400 hover:text-yellow-300 transition-colors flex items-center gap-1"
+                        >
+                            <span>⚡</span>
+                            Instant Borrow V2
+                            <span className="px-1.5 py-0.5 bg-gradient-to-r from-yellow-400 to-yellow-600 text-black text-[10px] font-bold rounded">
+                                NEW
+                            </span>
+                        </Link>
+                        <Link
                             href="/vault"
                             className="text-sm font-medium text-white/80 hover:text-yellow-400 transition-colors"
                         >
