@@ -1,58 +1,126 @@
 'use client';
 
 import Link from 'next/link';
+import { Github, Twitter, Send } from 'lucide-react';
 
 export function Footer() {
+    const footerLinks = {
+        product: [
+            { name: 'Cash Loans', href: '/cash-loan' },
+            { name: 'Buy Gold', href: '/swap' },
+            { name: 'Vault', href: '/vault' },
+        ],
+        resources: [
+            { name: 'FAQ', href: '#faq' },
+            { name: 'How It Works', href: '#how-it-works' },
+            { name: 'Contact Us', href: '#' },
+        ],
+        legal: [
+            { name: 'Terms', href: '#' },
+            { name: 'Privacy', href: '#' },
+            { name: 'Risk Disclaimer', href: '#' },
+        ],
+    };
+
+    const socialLinks = [
+        { name: 'Twitter', icon: Twitter, href: '#' },
+        { name: 'Telegram', icon: Send, href: '#' },
+        { name: 'GitHub', icon: Github, href: '#' },
+    ];
+
     return (
         <footer className="border-t border-white/10 bg-zinc-950">
-            <div className="container mx-auto px-4 py-8">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    {/* About */}
-                    <div>
-                        <h3 className="font-semibold mb-3 bg-gradient-to-r from-yellow-400 via-yellow-500 to-amber-500 bg-clip-text text-transparent">
-                            AuRoom Protocol
-                        </h3>
-                        <p className="text-sm text-white/60">
-                            From Rupiah to Yield-Bearing Gold on Mantle Network
-                        </p>
+            <div className="container mx-auto px-4 py-12">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+                    {/* Brand */}
+                    <div className="lg:col-span-2 space-y-4">
+                        <div>
+                            <h3 className="text-2xl font-bold bg-gradient-to-r from-yellow-400 via-yellow-500 to-amber-500 bg-clip-text text-transparent">
+                                AuRoom
+                            </h3>
+                            <p className="text-sm text-white/60 mt-2">
+                                Digital Pawnshop for the Modern Era
+                            </p>
+                        </div>
                     </div>
 
-                    {/* Links */}
+                    {/* Product */}
                     <div>
-                        <h3 className="font-semibold mb-3 text-white">Quick Links</h3>
-                        <ul className="space-y-2 text-sm">
-                            <li>
-                                <Link href="/swap" className="text-white/60 hover:text-yellow-400 transition-colors">
-                                    Swap
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href="/vault" className="text-white/60 hover:text-yellow-400 transition-colors">
-                                    Vault
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href="/verify" className="text-white/60 hover:text-yellow-400 transition-colors">
-                                    Verify
-                                </Link>
-                            </li>
+                        <h4 className="font-bold mb-4 text-white">Product</h4>
+                        <ul className="space-y-2">
+                            {footerLinks.product.map((link) => (
+                                <li key={link.name}>
+                                    <Link
+                                        href={link.href}
+                                        className="text-sm text-white/60 hover:text-yellow-500 transition-colors"
+                                    >
+                                        {link.name}
+                                    </Link>
+                                </li>
+                            ))}
                         </ul>
                     </div>
 
-                    {/* Network */}
+                    {/* Resources */}
                     <div>
-                        <h3 className="font-semibold mb-3 text-white">Network</h3>
-                        <p className="text-sm text-white/60">
-                            Mantle Sepolia Testnet
-                        </p>
-                        <p className="text-xs text-white/50 mt-1">
-                            Chain ID: 5003
-                        </p>
+                        <h4 className="font-bold mb-4 text-white">Help</h4>
+                        <ul className="space-y-2">
+                            {footerLinks.resources.map((link) => (
+                                <li key={link.name}>
+                                    <Link
+                                        href={link.href}
+                                        className="text-sm text-white/60 hover:text-yellow-500 transition-colors"
+                                    >
+                                        {link.name}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    {/* Legal */}
+                    <div>
+                        <h4 className="font-bold mb-4 text-white">Technology</h4>
+                        <ul className="space-y-2">
+                            <li className="text-sm text-white/60">Mantle Network</li>
+                            <li className="text-sm text-white/60">Smart Contract</li>
+                            <li className="text-sm text-white/60">Documentation</li>
+                        </ul>
                     </div>
                 </div>
 
-                <div className="mt-8 pt-8 border-t border-white/10 text-center text-sm text-white/60">
-                    <p>&copy; 2024 AuRoom Protocol. Built for Mantle Global Hackathon 2025.</p>
+                {/* Bottom */}
+                <div className="border-t border-white/10 mt-8 pt-8 space-y-4">
+                    {/* Social Links */}
+                    <div className="flex justify-center gap-6">
+                        {socialLinks.map((social) => (
+                            <Link
+                                key={social.name}
+                                href={social.href}
+                                className="text-white/60 hover:text-yellow-500 transition-colors"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label={social.name}
+                            >
+                                <social.icon className="h-5 w-5" />
+                            </Link>
+                        ))}
+                    </div>
+
+                    {/* Copyright & Disclaimer */}
+                    <div className="text-center space-y-2">
+                        <p className="text-sm text-white/60">
+                            © 2025 AuRoom Protocol. Built for Mantle SEA Hackathon.
+                        </p>
+                        <p className="text-sm text-yellow-500 font-medium">
+                            ⚠️ DISCLAIMER
+                        </p>
+                        <p className="text-xs text-white/60 max-w-2xl mx-auto">
+                            AuRoom is a testnet platform for technology demonstration.
+                            All transactions use testnet tokens with no real value.
+                            Not financial or investment advice.
+                        </p>
+                    </div>
                 </div>
             </div>
         </footer>
