@@ -6,13 +6,13 @@ import { Globe, Wallet } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 const NETWORK_INFO = {
-    name: "Mantle Sepolia Testnet",
-    chainId: 5003,
+    name: "Lisk Sepolia Testnet",
+    chainId: 4202,
     chainIdHex: "0x138B",
-    currency: "MNT",
-    rpcUrl: "https://rpc.sepolia.mantle.xyz",
-    explorer: "https://sepolia.mantlescan.xyz",
-    faucet: "https://faucet.sepolia.mantle.xyz",
+    currency: "ETH",
+    rpcUrl: "-",
+    explorer: "https://sepolia-blockscout.lisk.com",
+    faucet: "-",
 };
 
 /**
@@ -51,7 +51,7 @@ export function NetworkInfo() {
 
             toast({
                 title: "Success!",
-                description: "Mantle Sepolia network added to MetaMask",
+                description: "Lisk Sepolia network added to MetaMask",
             });
         } catch (error: any) {
             toast({
@@ -70,7 +70,7 @@ export function NetworkInfo() {
                     Network Information
                 </CardTitle>
                 <CardDescription>
-                    Mantle Sepolia testnet details
+                    Lisk Sepolia testnet details
                 </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">

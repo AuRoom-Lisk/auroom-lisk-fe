@@ -82,7 +82,7 @@ export function Footer() {
                     <div>
                         <h4 className="font-bold mb-4 text-white">Technology</h4>
                         <ul className="space-y-2">
-                            <li className="text-sm text-white/60">Mantle Network</li>
+                            <li className="text-sm text-white/60">Lisk Network</li>
                             <li className="text-sm text-white/60">Smart Contract</li>
                             <li className="text-sm text-white/60">Documentation</li>
                         </ul>
@@ -110,7 +110,7 @@ export function Footer() {
                     {/* Copyright & Disclaimer */}
                     <div className="text-center space-y-2">
                         <p className="text-sm text-white/60">
-                            © 2025 AuRoom Protocol. Built for Mantle SEA Hackathon.
+                            © 2026 AuRoom Protocol. Built for Lisk Builders Challenge: Round Three.
                         </p>
                         <p className="text-sm text-yellow-500 font-medium">
                             ⚠️ DISCLAIMER

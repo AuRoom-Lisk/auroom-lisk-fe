@@ -4,14 +4,14 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { ExternalLink, Droplet } from 'lucide-react';
 
-const MANTLE_FAUCET_URL = "https://faucet.sepolia.mantle.xyz";
+const LISK_FAUCET_URL = "https://console.optimism.io/faucet";
 
 /**
- * ExternalFaucet - Link to Mantle Sepolia MNT faucet
+ * ExternalFaucet - Link to Lisk Sepolia MNT faucet
  */
 export function ExternalFaucet() {
     const openFaucet = () => {
-        window.open(MANTLE_FAUCET_URL, '_blank', 'noopener,noreferrer');
+        window.open(LISK_FAUCET_URL, '_blank', 'noopener,noreferrer');
     };
 
     return (
@@ -27,7 +27,7 @@ export function ExternalFaucet() {
             </CardHeader>
             <CardContent className="space-y-4">
                 <p className="text-sm text-muted-foreground">
-                    Need MNT for gas fees? Get testnet MNT from the official Mantle Sepolia faucet.
+                    Need MNT for gas fees? Get testnet MNT from the official Lisk Sepolia faucet.
                 </p>
 
                 <Button
@@ -36,11 +36,11 @@ export function ExternalFaucet() {
                     className="w-full"
                 >
                     <ExternalLink className="mr-2 h-4 w-4" />
-                    Open Mantle Sepolia Faucet
+                    Open Lisk Sepolia Faucet
                 </Button>
 
                 <p className="text-xs text-muted-foreground text-center">
-                    {MANTLE_FAUCET_URL}
+                    {LISK_FAUCET_URL}
                 </p>
             </CardContent>
         </Card>

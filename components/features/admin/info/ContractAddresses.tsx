@@ -7,7 +7,7 @@ import { LISK_CONTRACTS as CONTRACTS } from '@/lib/contracts/lisk_addresses';
 import { Copy, ExternalLink, FileJson } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
-const EXPLORER_URL = "https://sepolia.mantlescan.xyz";
+const EXPLORER_URL = "https://sepolia-blockscout.lisk.com";
 
 interface ContractInfo {
     name: string;
@@ -69,7 +69,7 @@ export function ContractAddresses() {
             <CardHeader>
                 <CardTitle>Contract Addresses</CardTitle>
                 <CardDescription>
-                    All deployed contract addresses on Mantle Sepolia
+                    All deployed contract addresses on Lisk Sepolia
                 </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">

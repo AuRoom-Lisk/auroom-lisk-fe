@@ -117,10 +117,10 @@ export function LandingFooter() {
                     {/* Copyright & Disclaimer */}
                     <div className="text-center space-y-2">
                         <p className="text-sm text-white/60">
-                            Built for Mantle Global Hackathon 2025
+                            Built for Lisk Builders Challenge: Round Three
                         </p>
                         <p className="text-sm text-white/60">
-                            © 2024 AuRoom Protocol. All rights reserved.
+                            © 2026 AuRoom Protocol. All rights reserved.
                         </p>
                         <p className="text-sm text-yellow-500 font-medium">
                             ⚠️ This is a testnet demo. Do not use real funds.

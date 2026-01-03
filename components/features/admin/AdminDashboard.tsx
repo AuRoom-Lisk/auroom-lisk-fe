@@ -63,7 +63,7 @@ export function AdminDashboard() {
                         </div>
                         <div>
                             <p className="text-sm text-muted-foreground">Network</p>
-                            <p className="text-sm font-medium">Mantle Sepolia (5003)</p>
+                            <p className="text-sm font-medium">Lisk Sepolia (4202)</p>
                         </div>
                     </div>
                 </CardContent>

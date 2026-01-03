@@ -83,7 +83,7 @@ export function SecurityCompliance() {
                         <div className="text-sm space-y-2 text-white/80">
                             <p>⏳ Professional audit planned for mainnet launch</p>
                             <p>Currently: Internal testing complete (106/106 tests passing)</p>
-                            <p>Testnet: Mantle Sepolia deployment</p>
+                            <p>Testnet: Lisk Sepolia deployment</p>
                         </div>
                         <div className="pt-2">
                             <Button

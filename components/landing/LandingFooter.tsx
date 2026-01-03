@@ -117,7 +117,7 @@ export function LandingFooter() {
                     {/* Copyright & Disclaimer */}
                     <div className="text-center space-y-2">
                         <p className="text-sm text-white/60">
-                            © 2025 AuRoom Protocol. Built for Mantle SEA Hackathon.
+                            © 2025 AuRoom Protocol. Built for Lisk Builders Challenge: Round Three.
                         </p>
                         <p className="text-sm text-yellow-500 font-medium">
                             ⚠️ DISCLAIMER
