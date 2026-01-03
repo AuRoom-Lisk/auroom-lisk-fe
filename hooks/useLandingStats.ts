@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useReadContract } from 'wagmi';
 import { formatUnits } from 'viem';
-import { CONTRACTS } from '@/lib/contracts/addresses';
+import { LISK_CONTRACTS as CONTRACTS } from '@/lib/contracts/lisk_addresses';
 import { GoldVaultABI } from '@/lib/contracts/abis';
 
 interface LandingStats {

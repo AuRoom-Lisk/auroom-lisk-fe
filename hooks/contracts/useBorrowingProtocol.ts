@@ -1,7 +1,7 @@
 // hooks/contracts/useBorrowingProtocol.ts
 
 import { useReadContract, useWriteContract, useWaitForTransactionReceipt, useAccount } from 'wagmi';
-import { CONTRACTS } from '@/lib/contracts/addresses';
+import { LISK_CONTRACTS as CONTRACTS } from '@/lib/contracts/lisk_addresses';
 import BorrowingProtocolABI from '@/abi/BorrowingProtocol.json';
 
 // ========== READ HOOKS ==========

@@ -10,7 +10,7 @@ import { formatUnits, parseUnits } from 'viem';
 import { useTokenBalance } from '@/hooks/contracts/useTokenBalance';
 import { useIDRXAllowanceV2, useIDRXApproveV2 } from '@/hooks/contracts/useTokenApprovalsV2';
 import { useRepayAndWithdraw, useClosePosition, usePreviewRepayAndWithdraw } from '@/hooks/contracts/useBorrowingProtocolV2';
-import { CONTRACTS } from '@/lib/contracts/addresses';
+import { LISK_CONTRACTS as CONTRACTS } from '@/lib/contracts/lisk_addresses';
 import { Loader2, Wallet, DoorClosed, CheckCircle2 } from 'lucide-react';
 
 interface RepayFormProps {

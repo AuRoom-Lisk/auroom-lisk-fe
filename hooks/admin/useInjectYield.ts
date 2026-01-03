@@ -1,6 +1,6 @@
 import { useWriteContract, useWaitForTransactionReceipt } from 'wagmi';
 import { MockTokenABI } from '@/lib/contracts/abis/MockToken';
-import { CONTRACTS } from '@/lib/contracts/addresses';
+import { LISK_CONTRACTS as CONTRACTS } from '@/lib/contracts/lisk_addresses';
 
 /**
  * Hook for injecting yield into the GoldVault

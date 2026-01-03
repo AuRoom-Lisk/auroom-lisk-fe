@@ -1,4 +1,4 @@
-import { CONTRACTS } from './addresses';
+import { LISK_CONTRACTS as CONTRACTS } from './lisk_addresses';
 
 export const TOKENS = {
     IDRX: {

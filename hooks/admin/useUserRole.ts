@@ -1,6 +1,6 @@
 import { useAccount } from 'wagmi';
 import { useIdentityRegistry } from '@/hooks/contracts/useIdentityRegistry';
-import { DEPLOYER } from '@/lib/contracts/addresses';
+import { DEPLOYER } from '@/lib/contracts/lisk_addresses';
 
 export type UserRole = 'guest' | 'connected' | 'verified' | 'admin' | 'owner';
 

@@ -23,7 +23,7 @@ import {
     useIDRXAllowanceV2,
     useIDRXApproveV2,
 } from './contracts/useTokenApprovalsV2';
-import { CONTRACTS } from '@/lib/contracts/addresses';
+import { LISK_CONTRACTS as CONTRACTS } from '@/lib/contracts/lisk_addresses';
 import { calculateLoan, calculateMaxLoan } from '@/lib/utils/loanCalculations';
 
 /**

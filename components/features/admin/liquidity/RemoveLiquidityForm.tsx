@@ -10,7 +10,7 @@ import { useRemoveLiquidity } from '@/hooks/admin/useRemoveLiquidity';
 import { useTokenBalance } from '@/hooks/contracts/useTokenBalance';
 import { useTokenApproval } from '@/hooks/contracts/useTokenApproval';
 import { useTokenAllowance } from '@/hooks/contracts/useTokenAllowance';
-import { CONTRACTS } from '@/lib/contracts/addresses';
+import { LISK_CONTRACTS as CONTRACTS } from '@/lib/contracts/lisk_addresses';
 import { TOKENS } from '@/lib/contracts/tokens';
 import { parseUnits, formatUnits } from 'viem';
 import { useAccount } from 'wagmi';

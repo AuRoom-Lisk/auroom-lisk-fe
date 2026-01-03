@@ -1,7 +1,7 @@
 import { useReadContract, useAccount } from 'wagmi';
 import { MockTokenABI } from '@/lib/contracts/abis/MockToken';
 import { UniswapV2PairABI } from '@/lib/contracts/abis/UniswapV2Pair';
-import { CONTRACTS } from '@/lib/contracts/addresses';
+import { LISK_CONTRACTS as CONTRACTS } from '@/lib/contracts/lisk_addresses';
 import { formatUnits } from 'viem';
 
 export interface TokenBalance {

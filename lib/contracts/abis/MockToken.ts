@@ -70,4 +70,12 @@ export const MockTokenABI = [
         stateMutability: "view",
         type: "function",
     },
+    // Ownable function
+    {
+        inputs: [],
+        name: "owner",
+        outputs: [{ name: "", type: "address" }],
+        stateMutability: "view",
+        type: "function",
+    },
 ] as const;

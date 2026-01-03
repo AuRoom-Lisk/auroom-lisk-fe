@@ -1,7 +1,7 @@
 // hooks/contracts/useBorrowingProtocolV2.ts
 
 import { useReadContract, useWriteContract, useWaitForTransactionReceipt, useAccount } from 'wagmi';
-import { CONTRACTS } from '@/lib/contracts/addresses';
+import { LISK_CONTRACTS as CONTRACTS } from '@/lib/contracts/lisk_addresses';
 import BorrowingProtocolV2ABI from '@/lib/contracts/abis/BorrowingProtocolV2.json';
 
 const PROTOCOL_ADDRESS = CONTRACTS.BorrowingProtocolV2;

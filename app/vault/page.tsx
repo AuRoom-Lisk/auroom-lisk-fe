@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { TOKENS } from '@/lib/contracts/tokens';
-import { CONTRACTS } from '@/lib/contracts/addresses';
+import { LISK_CONTRACTS as CONTRACTS } from '@/lib/contracts/lisk_addresses';
 import { useTokenBalance } from '@/hooks/contracts/useTokenBalance';
 import { useTokenAllowance } from '@/hooks/contracts/useTokenAllowance';
 import { useTokenApproval } from '@/hooks/contracts/useTokenApproval';

@@ -8,7 +8,7 @@ import { formatUnits, parseUnits } from 'viem';
 import { useTokenBalance } from '@/hooks/contracts/useTokenBalance';
 import { useXAUTAllowanceV2, useXAUTApproveV2 } from '@/hooks/contracts/useTokenApprovalsV2';
 import { useDepositAndBorrow, useXAUTPriceV2, useBorrowFeeV2 } from '@/hooks/contracts/useBorrowingProtocolV2';
-import { CONTRACTS } from '@/lib/contracts/addresses';
+import { LISK_CONTRACTS as CONTRACTS } from '@/lib/contracts/lisk_addresses';
 import { Loader2, Zap, CheckCircle2 } from 'lucide-react';
 import { LTVSelector } from './LTVSelector';
 import { BorrowSummaryV2 } from './BorrowSummaryV2';

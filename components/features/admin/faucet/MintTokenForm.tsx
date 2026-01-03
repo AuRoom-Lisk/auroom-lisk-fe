@@ -1,17 +1,18 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAccount } from 'wagmi';
 import { parseUnits, isAddress } from 'viem';
 import { useMintToken } from '@/hooks/admin/useMintToken';
-import { CONTRACTS } from '@/lib/contracts/addresses';
+import { useCheckOwner } from '@/hooks/admin/useCheckOwner';
+import { LISK_CONTRACTS as CONTRACTS } from '@/lib/contracts/lisk_addresses';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Checkbox } from '@/components/ui/checkbox';
-import { Loader2, Coins } from 'lucide-react';
+import { Loader2, Coins, CheckCircle2, AlertCircle, ShieldAlert } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 type TokenType = 'IDRX' | 'USDC' | 'XAUT';
@@ -35,9 +36,36 @@ export function MintTokenForm() {
     const [useConnectedWallet, setUseConnectedWallet] = useState(true);
 
     const tokenAddress = CONTRACTS[selectedToken];
-    const { mint, isPending, isConfirming, isSuccess, hash } = useMintToken(tokenAddress);
+    const { mint, isPending, isConfirming, isSuccess, hash, error, errorMessage, reset } = useMintToken(tokenAddress);
+    const { owner, isOwner, isLoading: isCheckingOwner } = useCheckOwner(tokenAddress);
 
     const limits = TOKEN_LIMITS[selectedToken];
+
+    // Handle success
+    useEffect(() => {
+        if (isSuccess && hash) {
+            toast({
+                title: "✅ Success!",
+                description: `Successfully minted ${amount} ${selectedToken}. Tx: ${hash.slice(0, 10)}...${hash.slice(-8)}`,
+            });
+            // Reset form
+            setAmount('');
+            reset();
+        }
+    }, [isSuccess, hash, amount, selectedToken, toast, reset]);
+
+    // Handle errors
+    useEffect(() => {
+        if (error && errorMessage) {
+            toast({
+                title: "❌ Minting Failed",
+                description: hash
+                    ? `${errorMessage}. Tx: ${hash.slice(0, 10)}...${hash.slice(-8)}`
+                    : errorMessage,
+                variant: "destructive",
+            });
+        }
+    }, [error, errorMessage, hash, toast]);
 
     const handleMint = () => {
         const finalRecipient = useConnectedWallet ? connectedAddress : recipient;
@@ -74,17 +102,10 @@ export function MintTokenForm() {
         mint(finalRecipient as `0x${string}`, amountBigInt);
 
         toast({
-            title: "Minting tokens...",
-            description: `Minting ${amount} ${selectedToken} to ${finalRecipient.slice(0, 6)}...${finalRecipient.slice(-4)}`,
+            title: "⏳ Transaction Submitted",
+            description: `Minting ${amount} ${selectedToken}...`,
         });
     };
-
-    if (isSuccess && hash) {
-        toast({
-            title: "Success!",
-            description: `Successfully minted ${amount} ${selectedToken}`,
-        });
-    }
 
     const setSuggestedAmount = (value: number) => {
         setAmount(value.toString());
@@ -185,15 +206,57 @@ export function MintTokenForm() {
                     </div>
                 </div>
 
+                {error && errorMessage && (
+                    <div className="flex items-start gap-2 p-3 rounded-lg bg-destructive/10 border border-destructive/20">
+                        <AlertCircle className="h-4 w-4 text-destructive mt-0.5" />
+                        <div className="flex-1 text-sm">
+                            <p className="font-medium text-destructive">Error</p>
+                            <p className="text-destructive/90">{errorMessage}</p>
+                        </div>
+                    </div>
+                )}
+
+                {isSuccess && (
+                    <div className="flex items-start gap-2 p-3 rounded-lg bg-green-500/10 border border-green-500/20">
+                        <CheckCircle2 className="h-4 w-4 text-green-600 dark:text-green-400 mt-0.5" />
+                        <div className="flex-1 text-sm">
+                            <p className="font-medium text-green-600 dark:text-green-400">Success!</p>
+                            <p className="text-green-600/90 dark:text-green-400/90">Tokens minted successfully</p>
+                        </div>
+                    </div>
+                )}
+
+                {!isCheckingOwner && !isOwner && connectedAddress && (
+                    <div className="flex items-start gap-2 p-3 rounded-lg bg-amber-500/10 border border-amber-500/20">
+                        <ShieldAlert className="h-4 w-4 text-amber-600 dark:text-amber-400 mt-0.5" />
+                        <div className="flex-1 text-sm">
+                            <p className="font-medium text-amber-600 dark:text-amber-400">Not Contract Owner</p>
+                            <p className="text-amber-600/90 dark:text-amber-400/90">
+                                You are not the owner of this contract. Minting will fail.
+                            </p>
+                            {owner && (
+                                <p className="text-xs text-amber-600/70 dark:text-amber-400/70 mt-1">
+                                    Owner: {owner.slice(0, 6)}...{owner.slice(-4)}
+                                </p>
+                            )}
+                        </div>
+                    </div>
+                )}
+
                 <Button
                     onClick={handleMint}
                     disabled={!amount || isPending || isConfirming}
                     className="w-full"
                 >
-                    {isPending || isConfirming ? (
+                    {isPending ? (
                         <>
                             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                            Minting...
+                            Waiting for approval...
+                        </>
+                    ) : isConfirming ? (
+                        <>
+                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                            Confirming transaction...
                         </>
                     ) : (
                         `Mint ${selectedToken}`
@@ -206,6 +269,6 @@ export function MintTokenForm() {
                     </p>
                 )}
             </CardContent>
-        </Card>
+        </Card >
     );
 }
