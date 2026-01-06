@@ -21,9 +21,10 @@ interface SuccessModalProps {
         referenceNumber?: string;
         txHash?: string;
     };
+    onRedeem?: () => void;
 }
 
-export function SuccessModal({ isOpen, onClose, type, data }: SuccessModalProps) {
+export function SuccessModal({ isOpen, onClose, type, data, onRedeem }: SuccessModalProps) {
     const bank = data.bankId ? getBankById(data.bankId) : null;
 
     return (
@@ -115,6 +116,14 @@ export function SuccessModal({ isOpen, onClose, type, data }: SuccessModalProps)
 
                     {/* Actions */}
                     <div className="space-y-2">
+                        {type === 'borrow' && onRedeem && (
+                            <Button
+                                onClick={onRedeem}
+                                className="w-full h-12 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold"
+                            >
+                                💸 Redeem to Bank Account
+                            </Button>
+                        )}
                         <Button
                             onClick={onClose}
                             className="w-full h-12 bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 text-black font-bold"

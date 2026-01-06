@@ -11,6 +11,7 @@ import { ActiveLoanCard } from '@/components/cash-loan/ActiveLoanCard';
 import { RepayModal } from '@/components/cash-loan/RepayModal';
 import { ProcessingOverlay } from '@/components/cash-loan/ProcessingOverlay';
 import { SuccessModal } from '@/components/cash-loan/SuccessModal';
+import { RedeemModal } from '@/components/redeem/RedeemModal';
 import { LTVSelector } from '@/components/cash-loan/LTVSelector';
 import { ProgressSteps } from '@/components/cash-loan/ProgressSteps';
 import {
@@ -39,8 +40,14 @@ export default function CashLoanPage() {
     const [selectedLTV, setSelectedLTV] = useState(30); // Default 30%
     const [showRepayModal, setShowRepayModal] = useState(false);
     const [showSuccessModal, setShowSuccessModal] = useState(false);
+    const [showRedeemModal, setShowRedeemModal] = useState(false);
     const [successData, setSuccessData] = useState<any>({});
     const [flowState, setFlowState] = useState<LoanFlowState>({ step: 'idle', message: '' });
+    const [savedBankDetails, setSavedBankDetails] = useState<{
+        bank: string;
+        accountNumber: string;
+        accountName: string;
+    } | null>(null);
 
     // Hooks
     const { balance: goldBalance, isLoading: goldLoading } = useGoldBalance();
@@ -114,6 +121,14 @@ export default function CashLoanPage() {
     useEffect(() => {
         if (borrow.isSuccess) {
             const referenceNumber = generateReferenceNumber();
+
+            // Save bank details for redeem flow
+            setSavedBankDetails({
+                bank: selectedBank,
+                accountNumber,
+                accountName,
+            });
+
             setSuccessData({
                 loanAmount,
                 collateral: calculation.collateralRequired,
@@ -314,6 +329,19 @@ export default function CashLoanPage() {
                     }}
                     type={successData.bankId ? 'borrow' : 'repay'}
                     data={successData}
+                    onRedeem={() => {
+                        setShowSuccessModal(false);
+                        setShowRedeemModal(true);
+                    }}
+                />
+
+                {/* Redeem Modal */}
+                <RedeemModal
+                    isOpen={showRedeemModal}
+                    onClose={() => setShowRedeemModal(false)}
+                    idrxBalance={idrxBalance}
+                    bankDetails={savedBankDetails || undefined}
+                    txHash={successData.txHash}
                 />
             </div>
         </div>
