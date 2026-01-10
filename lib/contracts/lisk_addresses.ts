@@ -17,7 +17,7 @@ export const LISK_CONTRACTS = {
   XAUT_USDC_Pair: "0xBdfD81D4e79c0cC949BB52941BCd30Ed8b3B4112" as const,
 
   // ===== CORE PROTOCOL =====
-  SwapRouter: "0x8cDE80170b877a51a17323628BA6221F6F023505" as const,
+  SwapRouter: "0xb269ce3b7a308ce6b57e305ea8ca63f4cdf766c9" as const, // Updated: 10 Jan 2026 - New deployment with correct MockIDRXV2
   GoldVault: "0x0000000000000000000000000000000000000001" as const, // Not deployed on Lisk Sepolia - using dummy address
 
   // Borrowing Protocol V2 (Instant Borrow)

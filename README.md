@@ -252,7 +252,7 @@ All contracts are deployed on **Lisk Sepolia Testnet** (Chain ID: 4202)
 | IDRX/USDC Pair | `0xB0ea91604C8B98205cbDd5c3F7d8DB006404515F` |
 | XAUT/USDC Pair | `0xBdfD81D4e79c0cC949BB52941BCd30Ed8b3B4112` |
 | **Core Protocol** | |
-| SwapRouter | `0x8cDE80170b877a51a17323628BA6221F6F023505` |
+| SwapRouter | `0xb269ce3b7a308ce6b57e305ea8ca63f4cdf766c9` |
 | BorrowingProtocolV2 | `0x8c49cF7B7CCE0fBffADFe44F764fe6c5F2df82F9` |
 
 > 💡 **Block Explorer**: [Lisk Sepolia Blockscout](https://sepolia-blockscout.lisk.com)
